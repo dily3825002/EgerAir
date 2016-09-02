@@ -16,6 +16,9 @@ http://eger.sinaapp.com/code/demo
 http://eger.sinaapp.com/code/effect
 微信扫码查看演示
 
+教程地址：
+http://bbs.egret.com/forum.php?mod=viewthread&tid=1919&highlight=eger
+
 <img src="http://eger.sinaapp.com/code/public/eger2.png" alt="qq" title="Egret极速开发框架EGER"/>
 ###近期版本更新内容，请查看发布文档
 

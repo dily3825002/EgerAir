@@ -1,0 +1,14 @@
+{
+"resources":
+	[
+		{"name":"load","type":"sheet","url":"assets/load.json"},
+		{"name":"socialIcon","type":"sheet","url":"assets/socialIcon.json"},
+        {"name":"assets","type":"sheet","url":"assets/assets.json"}
+	],
+
+"groups":
+	[
+		{"name":"loading","keys":"load"},
+        {"name":"preload","keys":"socialIcon,assets"}
+	]
+}

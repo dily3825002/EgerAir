@@ -125,7 +125,7 @@ class StartPanel extends BasePanel{
 
     public onHelpTouchTap(e:egret.TouchEvent):void{
         // EffectUtils.rotationEffect(this.helpBtn,1000);
-        NativeApi.fileUpload(this.bg);
+        
     }
 
     public onShopTouchTap(e:egret.TouchEvent):void{

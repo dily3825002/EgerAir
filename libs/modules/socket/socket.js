@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -31,7 +31,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -68,7 +68,7 @@ var egret;
      * @event egret.ProgressEvent.SOCKET_DATA Receiving server data。
      * @event egret.Event.CLOSE Dispatched when the server closes the connection.
      * @event egret.ProgressEvent Dispatched when an IO error causes a send or load operation to fail.
-     * @see http://edn.egret.com/cn/index.php/article/index/id/164 WebSocket
+     * @see http://edn.egret.com/cn/docs/page/602 WebSocket
      * @version Egret 2.4
      * @platform Web,Native
      * @includeExample extension/socket/WebSocket.ts
@@ -82,7 +82,7 @@ var egret;
      * @event egret.ProgressEvent.SOCKET_DATA 接收服务器数据。
      * @event egret.Event.CLOSE 在服务器关闭连接时调度。
      * @event egret.IOErrorEvent.IO_ERROR 在出现输入/输出错误并导致发送或加载操作失败时调度。。
-     * @see http://edn.egret.com/cn/index.php/article/index/id/164 WebSocket
+     * @see http://edn.egret.com/cn/docs/page/602 WebSocket
      * @version Egret 2.4
      * @platform Web,Native
      * @includeExample extension/socket/WebSocket.ts
@@ -119,7 +119,10 @@ var egret;
              * @private
              */
             this._connected = false;
-            this.connectCount = 0;
+            /**
+             * @private
+             */
+            this._connecting = false;
             /**
              * @private
              */
@@ -156,16 +159,20 @@ var egret;
          * @platform Web,Native
          */
         p.connect = function (host, port) {
-            this.connectCount++;
-            this.socket.connect(host, port);
+            if (!this._connecting && !this._connected) {
+                this._connecting = true;
+                this.socket.connect(host, port);
+            }
         };
         /**
          * 根据提供的url连接
          * @param url 全地址。如ws://echo.websocket.org:80
          */
         p.connectByUrl = function (url) {
-            this.connectCount++;
-            this.socket.connectByUrl(url);
+            if (!this._connecting && !this._connected) {
+                this._connecting = true;
+                this.socket.connectByUrl(url);
+            }
         };
         /**
          * @language en_US
@@ -180,18 +187,18 @@ var egret;
          * @platform Web,Native
          */
         p.close = function () {
-            this.socket.close();
+            if (this._connected) {
+                this.socket.close();
+            }
         };
         /**
          * @private
          *
          */
         p.onConnect = function () {
-            this.connectCount--;
-            if (this.connectCount == 0) {
-                this._connected = true;
-                this.dispatchEventWith(egret.Event.CONNECT);
-            }
+            this._connected = true;
+            this._connecting = false;
+            this.dispatchEventWith(egret.Event.CONNECT);
         };
         /**
          * @private
@@ -206,6 +213,9 @@ var egret;
          *
          */
         p.onError = function () {
+            if (this._connecting) {
+                this._connecting = false;
+            }
             this.dispatchEventWith(egret.IOErrorEvent.IO_ERROR);
         };
         /**
@@ -277,12 +287,12 @@ var egret;
                 this._writeMessage += message;
             }
             this.flush();
-            return;
-            if (this._isReadySend) {
-                return;
-            }
-            this._isReadySend = true;
-            egret.callLater(this.flush, this);
+            // return;
+            // if (this._isReadySend) {
+            //     return;
+            // }
+            // this._isReadySend = true;
+            // egret.callLater(this.flush, this);
         };
         /**
          * @language en_US
@@ -451,7 +461,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -549,7 +559,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:

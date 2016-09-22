@@ -116,4 +116,3 @@ var EImage = (function (_super) {
     return EImage;
 }(egret.Bitmap));
 egret.registerClass(EImage,'EImage');
-//# sourceMappingURL=EImage.js.map

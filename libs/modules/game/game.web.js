@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -200,7 +200,7 @@ var egret;
                 function onLoadComplete(e) {
                     removeListeners();
                     var bitmapData = imageLoader.data;
-                    bitmapData.setAttribute("bitmapSrc", virtualUrl);
+                    bitmapData.source.setAttribute("bitmapSrc", virtualUrl);
                     var texture = new egret.Texture();
                     texture._setBitmapData(bitmapData);
                     loader.data = texture;

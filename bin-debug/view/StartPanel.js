@@ -98,7 +98,6 @@ var StartPanel = (function (_super) {
     };
     p.onHelpTouchTap = function (e) {
         // EffectUtils.rotationEffect(this.helpBtn,1000);
-        NativeApi.fileUpload(this.bg);
     };
     p.onShopTouchTap = function (e) {
         // EffectUtils.removeRotationEffect(this.helpBtn);

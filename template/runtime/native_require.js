@@ -18,7 +18,6 @@ var game_file_list = [
 	"bin-debug/componentExt/WaitPanel.js",
 	"bin-debug/core/component/AlertPanel.js",
 	"bin-debug/core/component/EButton.js",
-	"bin-debug/core/component/EImage.js",
 	"bin-debug/core/component/ETabBar.js",
 	"bin-debug/core/component/ETextField.js",
 	"bin-debug/core/component/EToggleButton.js",
